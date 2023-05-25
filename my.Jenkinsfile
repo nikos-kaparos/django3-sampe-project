@@ -40,7 +40,7 @@ pipeline {
                     openssl req -x509 -newkey rsa:4096 -keyout server.key -out server.crt -days 365 --nodes -subj '/C=GR/O=myorganization/OU=it/CN=myorg.com'
                 '''
                 sh '''
-                    ansible-playbook -i ~/workspace/ansible-project/hosts.yml -l app01 --extra vars "user_dir=home/azureuser" ~/workspace/ansible-project/playbooks/django-project-install.yml
+                    ansible-playbook -i ~/workspace/ansible-project/hosts.yml -l app01 --extra-vars "user_dir=home/azureuser" ~/workspace/ansible-project/playbooks/django-project-install.yml
                 '''
             }
         }
