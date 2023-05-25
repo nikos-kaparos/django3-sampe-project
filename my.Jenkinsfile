@@ -28,7 +28,7 @@ pipeline {
                 '''
 
                 sh '''
-                    ansible-playbook -i ~/workspace/ansible-project/hosts.yml -l app-vm ~/workspace/ansible-project/playbooks/postgres.yml
+                    ansible-playbook -i ~/workspace/ansible-project/hosts.yml -l db01 ~/workspace/ansible-project/playbooks/postgres.yml
                 '''
             }
         }
