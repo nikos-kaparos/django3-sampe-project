@@ -17,18 +17,7 @@ pipeline {
             }
         }
     
-        stage('test') {
-            steps {
-                sh '''
-                    HEAD_COMMIT=$(git rev-parse --short HEAD)
-                    TAG=$HEAD_COMMIT-$BUILD_ID
-                    cd myproject
-                    cp myproject/.env.example myproject/.env
-                    docker run --env-file ./myproject/.env $DOCKER_PREFIX:$TAG python manage.py test
-
-                '''
-            }
-        }    
+        
 
 
         stage('docker build') {
@@ -44,6 +33,18 @@ pipeline {
             }
         }
 
+        stage('test') {
+            steps {
+                sh '''
+                    HEAD_COMMIT=$(git rev-parse --short HEAD)
+                    TAG=$HEAD_COMMIT-$BUILD_ID
+                    cd myproject
+                    cp myproject/.env.example myproject/.env
+                    docker run --env-file ./myproject/.env $DOCKER_PREFIX:$TAG python manage.py test
+
+                '''
+            }
+        }    
             
     }
 }
