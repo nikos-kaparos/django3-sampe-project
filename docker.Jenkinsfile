@@ -17,20 +17,6 @@ pipeline {
             }
         }
     
-
-
-
-        stage('docker build') {
-            steps {
-                sh '''
-                    HEAD_COMMIT=$(git rev-parse --short HEAD)
-                    TAG=$HEAD_COMMIT-$BUILD_ID
-                    docker build --rm -t $DOCKER_PREFIX:$TAG -t $DOCKER_PREFIX:latest -f nonroot-alpine.Dockerfile .
-
-                '''
-            }
-        }
-
         stage('test') {
             steps {
                 sh '''
@@ -42,21 +28,22 @@ pipeline {
 
                 '''
             }
-        }
+        }    
 
-        stage('push docker image') {
+
+        stage('docker build') {
             steps {
                 sh '''
                     HEAD_COMMIT=$(git rev-parse --short HEAD)
                     TAG=$HEAD_COMMIT-$BUILD_ID
+                    docker build --rm -t $DOCKER_PREFIX:$TAG -t $DOCKER_PREFIX:latest -f nonroot-alpine.Dockerfile .
                     cat $DOCKER_TOKEN
                     cat $DOCKER_TOKEN | docker login $DOCKER_SERVER -u $DOCKER_USER --password-stdin
                     docker push $DOCKER_PREFIX --all-tags
-
                 '''
             }
         }
 
-        
+            
     }
 }
