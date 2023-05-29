@@ -4,16 +4,16 @@ pipeline {
 
     environment {
             DOCKER_TOKEN = credentials('docker-push-secret')
-            DOCKER_USER = 'tsadimas'
+            DOCKER_USER = 'nikos-kaparos'
             DOCKER_SERVER = 'ghcr.io'
-            DOCKER_PREFIX = 'ghcr.io/tsadimas/django'
+            DOCKER_PREFIX = 'ghcr.io/nikos-kaparos/django'
         }
 
     stages {
 
         stage('Clone') {
             steps {
-                git branch: 'main', url: 'git@github.com:tsadimas/django3-sampe-project.git'
+                git branch: 'main', url: 'git@github.com:nikos-kaparos/django3-sampe-project.git'
             }
         }
     
@@ -26,6 +26,7 @@ pipeline {
                     HEAD_COMMIT=$(git rev-parse --short HEAD)
                     TAG=$HEAD_COMMIT-$BUILD_ID
                     docker build --rm -t $DOCKER_PREFIX:$TAG -t $DOCKER_PREFIX:latest -f nonroot-alpine.Dockerfile .
+                    
                 '''
             }
         }

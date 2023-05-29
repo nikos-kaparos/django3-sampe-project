@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git branch: 'main', url: 'git@github.com:tsadimas/django3-sampe-project.git'
+                git branch: 'main', url: 'git@github.com:nikos-kaparos/django3-sampe-project.git'
             }
         }
 
