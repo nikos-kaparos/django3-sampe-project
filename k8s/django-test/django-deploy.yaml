@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  django-app
+  name: django
   namespace: default
   labels:
-    name:  django
+    name: django
 spec:
   selector:
     matchLabels:
@@ -13,10 +13,10 @@ spec:
   template:
     metadata:
       labels:
-        name:  django
+        name: django
     spec:
       containers:
-      - name:  django
+      - name: django
         image: ghcr.io/nikos-kaparos/django:2f04126-10
         resources:
           requests:
