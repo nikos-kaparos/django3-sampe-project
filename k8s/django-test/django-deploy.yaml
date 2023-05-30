@@ -1,0 +1,40 @@
+k8s apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-app
+  namespace: default
+  labels:
+        app: django
+spec:
+  selector:
+    matchLabels:
+      app: django
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: django
+    spec:
+      containers:
+      - name: django
+        image: ghcr.io/nikos-kaparos/django:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            memory: "300Mi"
+            cpu: "500m"
+        env:
+          - name:  ENV_VAR
+            valueFrom:
+              configMapKeyRef:
+                name:  django-config
+                key:  SECTET_KEY
+        envForm:
+          - configMapKeyRef:
+            name: django-config
+        ports:
+        - containerPort: 8000
+          name:  django
+      restartPolicy: Always
