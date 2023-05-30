@@ -1,10 +1,10 @@
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: django-app
+  name:  django-app
   namespace: default
   labels:
-        app: django
+    name:  django
 spec:
   selector:
     matchLabels:
@@ -13,28 +13,30 @@ spec:
   template:
     metadata:
       labels:
-        app: django
+        name:  django
     spec:
       containers:
-      - name: django
+      - name:  django
         image: ghcr.io/nikos-kaparos/django:2f04126-10
         resources:
           requests:
-            cpu: 100m
-            memory: 100Mi
+            cpu: "100m"
+            memory: "100Mi"
           limits:
-            memory: "300Mi"
             cpu: "500m"
+            memory: "300Mi"
         env:
-          - name:  ENV_VAR
-            valueFrom:
-              configMapKeyRef:
-                name: django-config
-                key: SECTET_KEY
-        envForm:
-          - configMapKeyRef:
-            name: django-config
+        - name:  ENV1
+          value:  test 
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: django-config
+              key: SECRET_KEY
+        envFrom:
+          - configMapRef:
+              name: django-config
         ports:
-        - containerPort: 8000
+        - containerPort:  8000
           name:  django
       restartPolicy: Always
