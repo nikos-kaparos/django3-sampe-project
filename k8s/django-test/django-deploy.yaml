@@ -40,3 +40,5 @@ spec:
         - containerPort:  8000
           name: django
       restartPolicy: Always
+      imagePullSecrets:
+        - name: registry-credentials
