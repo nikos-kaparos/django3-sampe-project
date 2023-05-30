@@ -29,8 +29,8 @@ spec:
           - name:  ENV_VAR
             valueFrom:
               configMapKeyRef:
-                name:  django-config
-                key:  SECTET_KEY
+                name: django-config
+                key: SECTET_KEY
         envForm:
           - configMapKeyRef:
             name: django-config
