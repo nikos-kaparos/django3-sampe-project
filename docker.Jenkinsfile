@@ -57,6 +57,17 @@ pipeline {
                 '''
             }
         }    
-            
+        
+        stage('install docker to target vm'){
+            steps{
+                sh '''
+                    ansible-galaxy install geerlingguy.docker
+                    ansible-galay install gerrlingguy.pip
+                '''
+                sh '''
+                    ansible-playbook -i ~/workspace/ansible-project/playbooks/docker-install.yml
+                '''
+            }
+        }
     }
 }
