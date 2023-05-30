@@ -68,6 +68,7 @@ pipeline {
                     ansible-playbook -i ~/workspace/ansible-project/hosts.yml -l deploy-vm-1 ~/workspace/ansible-project/playbooks/docker-install.yml
 
                 '''
+            }
         }
     }
 }
