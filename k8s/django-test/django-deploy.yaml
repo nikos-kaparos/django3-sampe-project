@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: django
+  name: django-app
   namespace: default
   labels:
     name: django
@@ -13,7 +13,7 @@ spec:
   template:
     metadata:
       labels:
-        name: django
+        app: django
     spec:
       containers:
       - name: django
@@ -38,5 +38,5 @@ spec:
               name: django-config
         ports:
         - containerPort:  8000
-          name:  django
+          name: django
       restartPolicy: Always
