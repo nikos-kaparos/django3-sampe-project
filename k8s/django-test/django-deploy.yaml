@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: django
-        image: ghcr.io/nikos-kaparos/django:2f04126-10
+        image: ghcr.io/nikos-kaparos/django:latest
         resources:
           requests:
             cpu: "100m"
