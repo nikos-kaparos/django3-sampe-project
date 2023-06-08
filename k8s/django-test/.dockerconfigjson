@@ -1,0 +1,10 @@
+{
+    "auths": {
+        "https://ghcr.io":{
+            "username":"nikos-kaparos",
+            "password":"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",
+            "email":"nikoskaparos@gmail.com",
+            "auth":"bmlrb3Mta2FwYXJvczpnaHBfQ0lraFlNQllSYkliaTdnT3lOZXk2ZDlyMkFYejRhMFJCNEY2"
+    	}
+    }
+}
