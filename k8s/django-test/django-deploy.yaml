@@ -4,7 +4,7 @@ metadata:
   name: django-app
   namespace: default
   labels:
-    name: django
+    app: django
 spec:
   selector:
     matchLabels:
@@ -17,28 +17,23 @@ spec:
     spec:
       containers:
       - name: django
-        image: ghcr.io/nikos-kaparos/django:latest
+        image: ghcr.io/nikos-kaparos/django:2f04126-10
         resources:
-          requests:
-            cpu: "100m"
-            memory: "100Mi"
           limits:
-            cpu: "500m"
             memory: "300Mi"
-        env:
+            cpu: "500m"
+      env:
         - name:  ENV1
-          value:  test 
+          value: test
         - name: DB_HOST
           valueFrom:
             configMapKeyRef:
-              name: django-config
+              name: django-onfig
               key: SECRET_KEY
-        envFrom:
-          - configMapRef:
-              name: django-config
-        ports:
-        - containerPort:  8000
+      envFrom:
+        - configMapKeyRef:
+            name: django-config
+      ports:
+        - containerPort: 8000
           name: django
-      restartPolicy: Always
-      imagePullSecrets:
-        - name: registry-credentials
+    restartPolicy: Alwyas
