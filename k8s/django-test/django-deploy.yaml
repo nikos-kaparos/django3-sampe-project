@@ -23,7 +23,7 @@ spec:
             memory: "300Mi"
             cpu: "500m"
       env:
-        - name:  ENV1
+        - name: ENV1
           value: test
         - name: DB_HOST
           valueFrom:
@@ -34,6 +34,6 @@ spec:
         - configMapKeyRef:
             name: django-config
       ports:
-        - containerPort: 8000
-          name: django
-    restartPolicy: Alwyas
+      - containerPort: 8000
+        name: django
+    restartPolicy: Always
