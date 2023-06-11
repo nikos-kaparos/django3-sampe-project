@@ -29,7 +29,29 @@ spec:
         - name: django-storage
           persistentVolumeClaim:
             claimName: django-volume
+        - name: django-static
+          persistentVolumeClaim:
+            claimName: django-volume-static
+        - name: nginx-conf
+          configMap:
+            name: django-nginx    
       containers:
+      - name: nginx-sidecar
+        image: nginx:stable
+        ports:
+            - containerPort: 80
+        imagePullPolicy: Always
+        volumeMounts:
+          - name: nginx-conf
+            mountPath: /etc/nginx/conf.d
+            readOnly: true
+          - name: django-storage
+            mountPath: /var/www/media
+            readOnly: true
+          - name: django-static
+            mountPath: /var/www/static/
+            readOnly: true
+
       - name: django
         image: ghcr.io/nikos-kaparos/django:2f04126-10
         resources:
@@ -57,7 +79,10 @@ spec:
           name:  django
         volumeMounts:
           - name: django-storage
-            mountPath: /storage
+            #mountPath: /storage
+            mountPath: /app/media
+          - name : django-static
+            mountPath: /app/static 
       restartPolicy: Always
       imagePullSecrets:
         - name: registry-credentials
