@@ -39,6 +39,7 @@ spec:
           limits:
             cpu: "500m"
             memory: "300Mi"
+       #dont need it only fro example
         env:
         - name: ENV1
           value: test
@@ -47,6 +48,7 @@ spec:
             configMapKeyRef:
               name: django-config
               key: SECRET_KEY
+        #this is what we need
         envFrom:
           - configMapRef:
               name: django-config
