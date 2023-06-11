@@ -2,9 +2,9 @@
     "auths": {
         "https://ghcr.io":{
             "username":"nikos-kaparos",
-            "password":"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",
+            "password":"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",
             "email":"nikoskaparos@gmail.com",
-            "auth":"bmlrb3Mta2FwYXJvczpnaHBfQ0lraFlNQllSYkliaTdnT3lOZXk2ZDlyMkFYejRhMFJCNEY2"
+            "auth":"bmlrb3Mta2FwYXJvczpnaHBfbTlNQ3NXVEh2MFN1UExDeUl2RTR3aEh5bWtJaWd6MXdnMjlw"
     	}
     }
 }

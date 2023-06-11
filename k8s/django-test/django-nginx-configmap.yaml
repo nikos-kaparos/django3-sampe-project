@@ -15,17 +15,19 @@ data:
               proxy_redirect off;
               proxy_pass http://django;
             }
+
+            location /media {
+              autoindex on;
+              alias /var/www/media/;
+            }
+
+            location /static {
+              autoindex on;
+              alias /var/www/static/;
+            }
       }
       
-      location /media {
-        autoindex on;
-        alias /var/www/media/;
-      }
-
-      location /static {
-        autoindex on;
-        alias /var/www/static/;
-      }
+      
 
       upstream django {
           server django:127.0.0.1:8000;
